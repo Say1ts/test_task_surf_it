@@ -4,7 +4,7 @@ auth_router = APIRouter(prefix="/auth")
 
 
 @auth_router.post("/registration", tags=["Auth"])
-async def registration_user():
+async def registrate_user():
     pass
 
 

@@ -1,11 +1,14 @@
 from fastapi import APIRouter
 
+from ad import api
+from db.shema import AdBase
+
 ad_router = APIRouter(prefix="/ad")
 
 
 @ad_router.post("/create", tags=["ad"])
-async def create_ad():
-    pass
+async def create_ad(body: AdBase):
+    return api.create_ad(body)
 
 
 @ad_router.post("/list", tags=["ad"])

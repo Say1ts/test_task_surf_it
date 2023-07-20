@@ -1,6 +1,6 @@
 import datetime
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class AdTypeBase(BaseModel):
@@ -39,7 +39,7 @@ class AdBase(BaseModel):
     is_published: bool = True
     owner: int
     price: Optional[float]
-    created_at: datetime.datetime = datetime.datetime.now()
+    created_at: datetime.datetime = None
 
 
 class Ad(AdBase):
@@ -56,6 +56,7 @@ class ComplainBase(BaseModel):
     title: str
     description: str
     created_by: int
+    created_at: datetime.datetime = None
 
 
 class Complain(ComplainBase):
@@ -67,9 +68,10 @@ class Complain(ComplainBase):
 
 class ReviewBase(BaseModel):
     ad_id: int
-    score: int
+    score: int = Field(ge=1, le=10)
     content: str
     created_by: int
+    created_at: datetime.datetime = None
 
 
 class Review(ReviewBase):

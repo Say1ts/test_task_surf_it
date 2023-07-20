@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 
 from ad import api
-from db.shema import AdBase
+from ad.schema import AdListQuery
+from db.schema import AdBase
 
 ad_router = APIRouter(prefix="/ad")
 
@@ -12,13 +13,13 @@ async def create_ad(body: AdBase):
 
 
 @ad_router.post("/list", tags=["ad"])
-async def list_ad():
-    pass
+async def list_ads(query: AdListQuery):
+    return api.list_ads(query)
 
 
 @ad_router.post("/{ad_id}/get/", tags=["ad"])
 async def get_ad(ad_id: int):
-    pass
+    return api.get_ad(ad_id)
 
 
 @ad_router.post("/ad_id}/edit", tags=["ad"])
@@ -28,7 +29,7 @@ async def edit_ad():
 
 @ad_router.post("/{ad_id}/delete/", tags=["ad"])
 async def delete_ad(ad_id: int):
-    pass
+    return api.delete_ad(ad_id)
 
 
 @ad_router.post("/{ad_id}/complain/create", tags=["ad_complains"])

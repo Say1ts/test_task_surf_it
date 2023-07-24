@@ -1,47 +1,70 @@
-from sqlalchemy import desc, Column
+from datetime import datetime
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from ad import queries
+from ad.queries import is_user_banned
 from ad.schema import AdListQuery
-from db.models import Ad
+from ad.filter_sort import handle_ads_filter
+from db.schema import AdBase, ComplainBase, ReviewBase
+from fastapi import HTTPException
 
 
-def handle_ads_filter(query: AdListQuery) -> list[Column]:
-    """
-    Handle filtering for ads
-    """
-
-    filter_conditions = [Ad.is_published]
-
-    if query.categories:
-        filter_conditions.append(Ad.category_id.in_(query.categories))
-
-    if query.ad_type:
-        filter_conditions.append(Ad.type_id == query.ad_type)
-
-    # Filter time intervals of creating ads
-    if query.creation_time_interval:
-        if query.creation_time_interval.newer_then:
-            filter_conditions.append(Ad.created_at >= query.creation_time_interval.newer_then)
-        if query.creation_time_interval.older_then:
-            filter_conditions.append(Ad.created_at <= query.creation_time_interval.older_then)
-
-    # Filter price intervals of creating ads
-    if query.price_interval:
-        if query.price_interval.price_gt:
-            filter_conditions.append(Ad.price >= query.price_interval.price_gt)
-        if query.price_interval.price_lt:
-            filter_conditions.append(Ad.price <= query.price_interval.price_lt)
-
-    return filter_conditions
+async def create_ad(body: AdBase, db: AsyncSession):
+    if await is_user_banned(body.owner, db):
+        return
+    body.created_at = datetime.now()
+    return await queries.create_ad(body, db)
 
 
-def handle_ads_sort(ads, sort):
-    if sort:
-        if sort == 'created_at':
-            ads = ads.order_by(Ad.created_at)
-        elif sort == '-created_at':
-            ads.order_by(desc(Ad.created_at))
-        elif sort == 'price':
-            ads = ads.order_by(Ad.price)
-        elif sort == '-price':
-            ads = ads.order_by(desc(Ad.price))
+async def list_ads(query: AdListQuery, db: AsyncSession):
+    start = (query.page - 1) * query.per_page
+    end = start + query.per_page
+    filter_conditions = handle_ads_filter(query)
+
+    ads = await queries.list_ads(filter_conditions, start, end, query.sort, db)
     return ads
+
+
+async def get_ad(ad_id: int, db: AsyncSession):
+    return await queries.get_ad(ad_id, db)
+
+
+async def delete_ad(ad_id: int, db: AsyncSession):
+    return await queries.delete_ad(ad_id, db)
+
+
+async def edit_ad(ad_id: int, current_user: int, ad_data: AdBase, db: AsyncSession):
+    ad = await queries.get_ad(ad_id, db)
+    if not ad:
+        raise HTTPException(status_code=404, detail="Ad not found")
+
+    if current_user == ad.owner or await queries.is_user_has_permission(current_user, "edit_ads"):
+        return await queries.edit_ad(ad_id, ad_data, db)
+
+    raise HTTPException(status_code=403, detail="Not enough permissions")
+
+
+async def create_complain(complain: ComplainBase, db: AsyncSession):
+    if await is_user_banned(complain.created_by, db):
+        return
+    complain.created_at = datetime.now()
+    return await queries.create_complain(complain, db)
+
+
+async def list_complains(ad_id: int, db: AsyncSession):
+    return await queries.list_complains(ad_id, db)
+
+
+async def create_review(review: ReviewBase, db: AsyncSession):
+    if await is_user_banned(review.created_by, db):
+        return
+    review.created_at = datetime.now()
+    return await queries.create_review(review, db)
+
+
+async def list_reviews(ad_id: int, db: AsyncSession):
+    return await queries.list_reviews(ad_id, db)
+
+
+async def delete_review(review_id: int, db: AsyncSession):
+    return await queries.delete_review(review_id, db)

@@ -1,141 +1,108 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import and_, Column, select, delete, update
 
-from ad.schema import AdGetQuery
-from ad.services import handle_ads_sort
-from db.connection import pg_db_session
+from ad.filter_sort import handle_ads_sort
 from db.models import Ad, User, Review, Complain, Permission, Role
 from db.schema import AdBase, ReviewBase, ComplainBase
 
-from sqlalchemy import and_, Column
 
-
-@pg_db_session
-def create_ad(body: AdBase, session=None):
+async def create_ad(body: AdBase, db: AsyncSession):
     new_ad = Ad(**body.dict())
-    session.add(new_ad)
-    session.commit()
-    session.refresh(new_ad)
+    db.add(new_ad)
+    await db.flush()
+    await db.refresh(new_ad)
     return new_ad
 
 
-@pg_db_session
-def is_user_banned(user_id: int, session=None) -> bool:
-    user = session.query(User.is_banned).filter(User.id == user_id).first()
-    if user is None:
+async def is_user_banned(user_id: int, db: AsyncSession) -> bool:
+    is_banned = await db.execute(select(User.is_banned).where(User.id == user_id))
+    is_banned = is_banned.scalars().first()
+    if is_banned is None:
         return True
-    return user.is_banned
+    return is_banned
 
 
-@pg_db_session
-def list_ads(
-        filter_conditions: list[Column],
-        start: int, end: int,
-        sort: str = None, session=None):
-    ads = session.query(Ad).filter(and_(*filter_conditions))
+async def list_ads(filter_conditions: list[Column], start: int, end: int, sort: str, db: AsyncSession):
+    ads = select(Ad).where(and_(*filter_conditions))
     ads = handle_ads_sort(ads, sort)
-    ads = ads.slice(start, end).all()
-    return ads
+    result = await db.execute(ads.slice(start, end))
+    return result.scalars().all()
 
 
-@pg_db_session
-def get_ad(ad_id: int, session=None):
-    ad = session.query(Ad) \
-        .filter(and_(
-            Ad.id == ad_id,
-            Ad.is_published)) \
-        .first()
-    print(ad_id)
-    return ad
+async def get_ad(ad_id: int, db: AsyncSession):
+    print(type(ad_id))
+    stmt = select(Ad).where(and_(Ad.id == ad_id, Ad.is_published))
+    result = await db.execute(stmt)
+    return result.scalar_one_or_none()
 
 
-@pg_db_session
-def delete_ad(ad_id: int, session=None) -> dict[str, str]:
-    session.query(Ad) \
-        .filter(Ad.id == ad_id) \
-        .delete()
-    session.commit()
+async def delete_ad(ad_id: int, db: AsyncSession) -> dict[str, str]:
+    stmt = delete(Ad).where(Ad.id == ad_id)
+    await db.execute(stmt)
     return {"message": "Ad deleted successfully"}
 
 
-@pg_db_session
-def edit_ad(ad_id: int, ad_data: AdBase, session=None):
-    ad = session.query(Ad).filter(Ad.id == ad_id).first()
-    if ad:
-        for key, value in ad_data.dict().items():
-            setattr(ad, key, value)
-        session.commit()
-        session.refresh(ad)
-        return ad
-    return None
+async def edit_ad(ad_id: int, ad_data: AdBase, db: AsyncSession):
+    stmt = update(Ad).where(Ad.id == ad_id).values(**ad_data.dict())
+    await db.execute(stmt)
+    return await get_ad(ad_id, db)
 
 
-@pg_db_session
-def create_complain(complain_data: ComplainBase, session=None):
+async def create_complain(complain_data: ComplainBase, db: AsyncSession):
     new_complain = Complain(**complain_data.dict())
-    session.add(new_complain)
-    session.commit()
-    session.refresh(new_complain)
+    db.add(new_complain)
+    await db.commit()
+    await db.refresh(new_complain)
     return new_complain
 
 
-@pg_db_session
-def list_complains(ad_id: int, session=None):
-    return session.query(Complain).filter(Complain.ad_id == ad_id).all()
+async def list_complains(ad_id: int, db: AsyncSession):
+    stmt = select(Complain).where(Complain.ad_id == ad_id)
+    result = await db.execute(stmt)
+    return result.scalars().all()
 
 
-@pg_db_session
-def create_review(review_data: ReviewBase, session=None):
-    existing_review = session.query(Review)\
-        .filter(
-            Review.ad_id == review_data.ad_id,
-            Review.created_by == review_data.created_by
-        ).first()
+async def create_review(review_data: ReviewBase, db: AsyncSession):
+    stmt = select(Review).where(and_(Review.ad_id == review_data.ad_id, Review.created_by == review_data.created_by))
+    result = await db.execute(stmt)
+    existing_review = result.scalar_one_or_none()
 
     if existing_review:
         existing_review.score = review_data.score
         existing_review.content = review_data.content
-        session.commit()
-        session.refresh(existing_review)
+        await db.commit()
+        await db.refresh(existing_review)
         return existing_review
 
     new_review = Review(**review_data.dict())
-    session.add(new_review)
-    session.commit()
-    session.refresh(new_review)
+    db.add(new_review)
+    await db.commit()
+    await db.refresh(new_review)
     return new_review
 
 
-@pg_db_session
-def list_reviews(ad_id: int, session=None):
-    return session.query(Review).filter(Review.ad_id == ad_id).all()
+async def list_reviews(ad_id: int, db: AsyncSession):
+    stmt = select(Review).where(Review.ad_id == ad_id)
+    result = await db.execute(stmt)
+    return result.scalars().all()
 
 
-@pg_db_session
-def delete_review(review_id: int, session=None):
-    review = session.query(Review).get(review_id)
-    if review:
-        session.delete(review)
-        session.commit()
-        return {"message": "Review deleted"}
-    return {"message": "Review not found"}
+async def delete_review(review_id: int, db: AsyncSession):
+    stmt = delete(Review).where(Review.id == review_id)
+    await db.execute(stmt)
+    return {"message": "Review deleted"}
 
 
-@pg_db_session
-def is_user_has_permission(
-        user_id: int, permission_name: str, session=None) -> bool:
-    """
-    Check if a user has a specific permission based on their role.
-    :return: True if the user has permission, False otherwise.
-    """
-    user = session.query(User).get(user_id)
+async def is_user_has_permission(user_id: int, permission_name: str, db: AsyncSession) -> bool:
+    stmt = select(User).where(User.id == user_id)
+    result = await db.execute(stmt)
+    user = result.scalar_one_or_none()
+
     if not user:
         return False
 
-    # Получить все разрешения, связанные с ролью пользователя.
-    permissions = session.query(Permission).filter(
-        and_(
-            Permission.roles.any(Role.id == user.role_id),
-            Permission.title == permission_name
-        )
-    ).all()
+    stmt = select(Permission).where(
+        and_(Permission.roles.any(Role.id == user.role_id), Permission.title == permission_name))
+    result = await db.execute(stmt)
+    permissions = result.scalars().all()
     return bool(permissions)

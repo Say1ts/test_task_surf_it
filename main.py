@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.routing import APIRoute
+from starlette.responses import JSONResponse
 
 from ad.routes import ad_router
 from auth.auth import auth_backend, fastapi_users
@@ -29,7 +30,7 @@ app.include_router(
     tags=["auth"],
 )
 # @app.exception_handler(ValueError)
-# async def value_error_exception_handler(request: Request, exc: ValueError):
+# async def value_error_exception_handler(request: Request, exc: ValueError) -> JSONResponse:
 #     return JSONResponse(
 #         status_code=400,
 #         content={"message": str(exc)},
@@ -37,5 +38,5 @@ app.include_router(
 #
 #
 # @app.exception_handler(500)
-# async def internal_exception_handler(request: Request, exc: Exception):
+# async def internal_exception_handler(request: Request, exc: Exception) -> JSONResponse:
 #     return JSONResponse(status_code=500, content={"message": str(exc)})

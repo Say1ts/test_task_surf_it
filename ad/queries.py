@@ -7,7 +7,7 @@ from db.models import Ad, User, Review, Complain, Permission, Role
 from db.schema import AdBase, ReviewBase, ComplainBase
 
 
-async def create_ad(body: AdBase, db: AsyncSession):
+async def create_ad(body: AdBase, db: AsyncSession) -> Ad:
     new_ad = Ad(**body.dict())
     db.add(new_ad)
     await db.flush()
@@ -23,14 +23,16 @@ async def is_user_banned(user_id: int, db: AsyncSession) -> bool:
     return False
 
 
-async def list_ads(filter_conditions: list[Column], start: int, end: int, sort: str, db: AsyncSession):
+async def list_ads(
+        filter_conditions: list[Column],
+        start: int, end: int, sort: str, db: AsyncSession):
     ads = select(Ad).where(and_(*filter_conditions))
     ads = handle_ads_sort(ads, sort)
     result = await db.execute(ads.slice(start, end))
     return result.scalars().all()
 
 
-async def get_ad(ad_id: int, db: AsyncSession):
+async def get_ad(ad_id: int, db: AsyncSession) -> Ad:
     stmt = select(Ad).where(and_(Ad.id == ad_id, Ad.is_published))
     result = await db.execute(stmt)
     return result.scalar_one_or_none()
@@ -42,13 +44,13 @@ async def delete_ad(ad_id: int, db: AsyncSession) -> dict[str, str]:
     return {"message": "Ad deleted successfully"}
 
 
-async def edit_ad(ad_id: int, ad_data: AdBase, db: AsyncSession):
+async def edit_ad(ad_id: int, ad_data: AdBase, db: AsyncSession) -> Ad:
     stmt = update(Ad).where(Ad.id == ad_id).values(**ad_data.dict())
     await db.execute(stmt)
     return await get_ad(ad_id, db)
 
 
-async def create_complain(complain_data: ComplainBase, db: AsyncSession):
+async def create_complain(complain_data: ComplainBase, db: AsyncSession) -> Complain:
     new_complain = Complain(**complain_data.dict())
     db.add(new_complain)
     await db.commit()
@@ -62,7 +64,7 @@ async def list_complains(ad_id: int, db: AsyncSession):
     return result.scalars().all()
 
 
-async def create_review(review_data: ReviewBase, db: AsyncSession):
+async def create_review(review_data: ReviewBase, db: AsyncSession) -> Review:
     stmt = select(Review).where(and_(Review.ad_id == review_data.ad_id, Review.created_by == review_data.created_by))
     result = await db.execute(stmt)
     existing_review = result.scalar_one_or_none()
@@ -87,13 +89,13 @@ async def list_reviews(ad_id: int, db: AsyncSession):
     return result.scalars().all()
 
 
-async def get_review(review_id: int, db: AsyncSession):
+async def get_review(review_id: int, db: AsyncSession) -> Review:
     stmt = select(Review).where(Review.id == review_id)
     result = await db.execute(stmt)
     return result.scalar_one_or_none()
 
 
-async def delete_review(review_id: int, db: AsyncSession):
+async def delete_review(review_id: int, db: AsyncSession) -> dict:
     stmt = delete(Review).where(Review.id == review_id)
     await db.execute(stmt)
     return {"message": "Review deleted"}

@@ -45,6 +45,7 @@ async def delete_ad(ad_id: int, db: AsyncSession, user: User):
 
 
 async def edit_ad(ad_id: int, user: User, ad_data: AdBase, db: AsyncSession):
+    check_user_for_ban(user)
     ad = await queries.get_ad(ad_id, db)
     if not ad:
         raise HTTPException(status_code=404, detail="Ad not found")
@@ -78,6 +79,7 @@ async def list_reviews(ad_id: int, db: AsyncSession):
 
 
 async def delete_review(review_id: int, db: AsyncSession, user: User):
+    check_user_for_ban(user)
     review: Review = await queries.get_review(review_id, db)
     if not review:
         raise HTTPException(status_code=404, detail="Review not found")

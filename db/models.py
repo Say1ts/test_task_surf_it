@@ -1,5 +1,6 @@
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text, DateTime, Numeric
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.testing.schema import Table
 
@@ -63,19 +64,28 @@ class Review(Base):
     created_by = Column(Integer, ForeignKey('user.id'))
 
 
-class User(Base):
+class User(SQLAlchemyBaseUserTable, Base):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String)
     first_name = Column(String)
     last_name = Column(String)
-    hashed_password = Column(String)
-    salt = Column(String)
-    role_id = Column(Integer, ForeignKey('role.id'))
-    is_banned = Column(Boolean)
 
+    role_id = Column(Integer, ForeignKey('role.id'))
     role = relationship('Role', back_populates='users')
+
+    email: Mapped[str] = mapped_column(
+        String(length=320), unique=True, index=True, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(
+        String(length=1024), nullable=False)
+
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    is_superuser: Mapped[bool] = mapped_column(
+        Boolean, default=False, nullable=False)
+    is_verified: Mapped[bool] = mapped_column(
+        Boolean, default=False, nullable=False)
+
 
 
 class Role(Base):
@@ -100,6 +110,6 @@ class Permission(Base):
 
 
 user_role_permission = Table('user_role_permission', Base.metadata,
-                            Column('role_id', ForeignKey('role.id'), primary_key=True),
-                            Column('permission_id', ForeignKey('permission.id'), primary_key=True)
-                            )
+                             Column('role_id', ForeignKey('role.id'), primary_key=True),
+                             Column('permission_id', ForeignKey('permission.id'), primary_key=True)
+                             )

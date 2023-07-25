@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import and_, Column, select, delete, update
 
@@ -15,11 +16,11 @@ async def create_ad(body: AdBase, db: AsyncSession):
 
 
 async def is_user_banned(user_id: int, db: AsyncSession) -> bool:
-    is_banned = await db.execute(select(User.is_banned).where(User.id == user_id))
-    is_banned = is_banned.scalars().first()
-    if is_banned is None:
-        return True
-    return is_banned
+    is_active = await db.execute(select(User.is_active).where(User.id == user_id))
+    is_active = is_active.scalars().first()
+    if is_active is None or not is_active:
+        raise HTTPException(status_code=403, detail="Access is denied. The user is banned.")
+    return False
 
 
 async def list_ads(filter_conditions: list[Column], start: int, end: int, sort: str, db: AsyncSession):
@@ -30,7 +31,6 @@ async def list_ads(filter_conditions: list[Column], start: int, end: int, sort: 
 
 
 async def get_ad(ad_id: int, db: AsyncSession):
-    print(type(ad_id))
     stmt = select(Ad).where(and_(Ad.id == ad_id, Ad.is_published))
     result = await db.execute(stmt)
     return result.scalar_one_or_none()
@@ -85,6 +85,12 @@ async def list_reviews(ad_id: int, db: AsyncSession):
     stmt = select(Review).where(Review.ad_id == ad_id)
     result = await db.execute(stmt)
     return result.scalars().all()
+
+
+async def get_review(review_id: int, db: AsyncSession):
+    stmt = select(Review).where(Review.id == review_id)
+    result = await db.execute(stmt)
+    return result.scalar_one_or_none()
 
 
 async def delete_review(review_id: int, db: AsyncSession):

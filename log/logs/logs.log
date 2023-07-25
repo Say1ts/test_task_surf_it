@@ -1,0 +1,1049 @@
+INFO     2023-07-26 03:49:01.472 request id: app - logging:callHandlers - Started server process [17124]
+INFO     2023-07-26 03:49:01.472 request id: app - logging:callHandlers - Started server process [17124]
+INFO     2023-07-26 03:49:01.473 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 03:49:01.474 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 03:49:01.475 request id: app - logging:callHandlers - Application startup complete.
+INFO     2023-07-26 03:49:01.475 request id: app - logging:callHandlers - Application startup complete.
+INFO     2023-07-26 03:49:18.605 request id: app - logging:callHandlers - 127.0.0.1:59455 - "POST /ad/list HTTP/1.1" 500
+ERROR    2023-07-26 03:49:18.607 request id: app - logging:callHandlers - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 120, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 324
+               │     └ 3
+               └ <function _main at 0x000001A18A68B4C0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 133, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 324
+           │    └ <function BaseProcess._bootstrap at 0x000001A18A5C1080>
+           └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x000001A18A5C05E0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x000001A18A651E10>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+    │    └ <function subprocess_started at 0x000001A18C6A8540>
+    └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=728, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x000001A18C7F3050>>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=728, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │       │   │    └ <function Server.serve at 0x000001A18C68B740>
+           │       │   └ <uvicorn.server.Server object at 0x000001A18C7F3050>
+           │       └ <function run at 0x000001A18C03F6A0>
+           └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000001A18C8008C0>
+           │      └ <function Runner.run at 0x000001A18C03FB00>
+           └ <asyncio.runners.Runner object at 0x000001A18C7D4B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001A18C03D580>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001A18C7D4B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 637, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001A18C03D4E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001A18C03F2E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001A18BFAF2E0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+> File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 435, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001A18C7FA610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001A18C8F3B50>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001A18C7FA610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\applications.py", line 289, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001A18FBFF8D0>
+          └ <fastapi.applications.FastAPI object at 0x000001A18C8F3B50>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001A18FD956C0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001A18C7FB8D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001A18FBFF8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001A18FAFFC10>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001A18C7FB8D0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+          │    │   │      │    │      └ <traceback object at 0x000001A18FDCCEC0>
+          │    │   │      │    └ Exception('Just Checking')
+          │    │   │      └ <class 'Exception'>
+          │    │   └ <method 'athrow' of 'async_generator' objects>
+          │    └ <async_generator object get_db at 0x000001A18FD9DEE0>
+          └ <contextlib._AsyncGeneratorContextManager object at 0x000001A18FDC27D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\db\connection.py", line 19, in get_db
+    yield session
+          └ <sqlalchemy.orm.session.AsyncSession object at 0x000001A18FAFFAD0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x000001A18FCD9650>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001A18FAFFC10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001A18EA2F4C0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001A18FD56F20>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x000001A18FDC1B10>
+                     └ <function get_request_handler.<locals>.app at 0x000001A18FD56FC0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001A18EA2D940>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.AsyncSession object at 0x000001A18FAFFAD0>, 'query': AdListQuery(page=1, per_page=10, categori...
+                 │         └ <function list_ads at 0x000001A18FC6F060>
+                 └ <fastapi.dependencies.models.Dependant object at 0x000001A18FD6F690>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\routes.py", line 25, in list_ads
+    raise Exception("Just Checking")
+
+Exception: Just Checking
+ERROR    2023-07-26 03:49:18.644 request id: app - logging:callHandlers - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 120, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 324
+               │     └ 3
+               └ <function _main at 0x000001A18A68B4C0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 133, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 324
+           │    └ <function BaseProcess._bootstrap at 0x000001A18A5C1080>
+           └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x000001A18A5C05E0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x000001A18A651E10>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+    │    └ <function subprocess_started at 0x000001A18C6A8540>
+    └ <SpawnProcess name='SpawnProcess-1' parent=21780 started>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=728, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x000001A18C7F3050>>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=728, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │       │   │    └ <function Server.serve at 0x000001A18C68B740>
+           │       │   └ <uvicorn.server.Server object at 0x000001A18C7F3050>
+           │       └ <function run at 0x000001A18C03F6A0>
+           └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000001A18C8008C0>
+           │      └ <function Runner.run at 0x000001A18C03FB00>
+           └ <asyncio.runners.Runner object at 0x000001A18C7D4B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001A18C03D580>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001A18C7D4B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 637, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001A18C03D4E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001A18C03F2E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001A18BFAF2E0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+> File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 435, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001A18C7FA610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001A18C8F3B50>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001A18C7FA610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\applications.py", line 289, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A18F...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001A18FBFF8D0>
+          └ <fastapi.applications.FastAPI object at 0x000001A18C8F3B50>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001A18FD956C0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001A18C7FB8D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001A18FBFF8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001A18FAFFC10>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001A18C7FB8D0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+          │    │   │      │    │      └ <traceback object at 0x000001A18FDCCEC0>
+          │    │   │      │    └ Exception('Just Checking')
+          │    │   │      └ <class 'Exception'>
+          │    │   └ <method 'athrow' of 'async_generator' objects>
+          │    └ <async_generator object get_db at 0x000001A18FD9DEE0>
+          └ <contextlib._AsyncGeneratorContextManager object at 0x000001A18FDC27D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\db\connection.py", line 19, in get_db
+    yield session
+          └ <sqlalchemy.orm.session.AsyncSession object at 0x000001A18FAFFAD0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x000001A18FCD9650>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001A18FAFFC10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001A18EA2F4C0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000001A18FD95E40>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001A...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001A18FD56F20>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x000001A18FDC1B10>
+                     └ <function get_request_handler.<locals>.app at 0x000001A18FD56FC0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001A18EA2D940>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.AsyncSession object at 0x000001A18FAFFAD0>, 'query': AdListQuery(page=1, per_page=10, categori...
+                 │         └ <function list_ads at 0x000001A18FC6F060>
+                 └ <fastapi.dependencies.models.Dependant object at 0x000001A18FD6F690>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\routes.py", line 25, in list_ads
+    raise Exception("Just Checking")
+
+Exception: Just Checking
+INFO     2023-07-26 04:00:31.489 request id: app - logging:callHandlers - Started server process [25024]
+INFO     2023-07-26 04:00:31.489 request id: app - logging:callHandlers - Started server process [25024]
+INFO     2023-07-26 04:00:31.490 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 04:00:31.490 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 04:00:31.491 request id: app - logging:callHandlers - Application startup complete.
+INFO     2023-07-26 04:00:31.491 request id: app - logging:callHandlers - Application startup complete.
+INFO     2023-07-26 04:00:41.830 request id: app - logging:callHandlers - Shutting down
+INFO     2023-07-26 04:00:41.830 request id: app - logging:callHandlers - Shutting down
+INFO     2023-07-26 04:00:41.940 request id: app - logging:callHandlers - Waiting for application shutdown.
+INFO     2023-07-26 04:00:41.940 request id: app - logging:callHandlers - Waiting for application shutdown.
+INFO     2023-07-26 04:00:41.941 request id: app - logging:callHandlers - Application shutdown complete.
+INFO     2023-07-26 04:00:41.941 request id: app - logging:callHandlers - Application shutdown complete.
+INFO     2023-07-26 04:00:41.942 request id: app - logging:callHandlers - Finished server process [25024]
+INFO     2023-07-26 04:00:41.942 request id: app - logging:callHandlers - Finished server process [25024]
+INFO     2023-07-26 04:00:44.888 request id: app - logging:callHandlers - Started server process [18944]
+INFO     2023-07-26 04:00:44.888 request id: app - logging:callHandlers - Started server process [18944]
+INFO     2023-07-26 04:00:44.889 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 04:00:44.889 request id: app - logging:callHandlers - Waiting for application startup.
+INFO     2023-07-26 04:00:44.890 request id: app - logging:callHandlers - Application startup complete.
+INFO     2023-07-26 04:00:44.891 request id: app - logging:callHandlers - Application startup complete.
+CRITICAL 2023-07-26 04:00:50.480 request id: None - db.connection:get_db - DataBase Error: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 5432)
+INFO     2023-07-26 04:00:50.481 request id: app - logging:callHandlers - 127.0.0.1:59612 - "POST /ad/list HTTP/1.1" 500
+ERROR    2023-07-26 04:00:50.482 request id: app - logging:callHandlers - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 120, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 312
+               │     └ 3
+               └ <function _main at 0x000002B47581B4C0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 133, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 312
+           │    └ <function BaseProcess._bootstrap at 0x000002B475751080>
+           └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x000002B4757505E0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x000002B4757E1E10>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+    │    └ <function subprocess_started at 0x000002B477838540>
+    └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=604, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x000002B477983050>>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=604, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │       │   │    └ <function Server.serve at 0x000002B47781B740>
+           │       │   └ <uvicorn.server.Server object at 0x000002B477983050>
+           │       └ <function run at 0x000002B4771CF6A0>
+           └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000002B4779908C0>
+           │      └ <function Runner.run at 0x000002B4771CFB00>
+           └ <asyncio.runners.Runner object at 0x000002B477964B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000002B4771CD580>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000002B477964B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 637, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000002B4771CD4E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000002B4771CF2E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000002B47713F2E0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+> File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 435, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002B47798A610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000002B47ADCFB50>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002B47798A610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\applications.py", line 289, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002B47AE8DB90>
+          └ <fastapi.applications.FastAPI object at 0x000002B47ADCFB50>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000002B47AF26520>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002B47ADCF0D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002B47AE8DB90>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000002B47AE98C10>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002B47ADCF0D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 25, in __call__
+    raise dependency_exception
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\db\connection.py", line 22, in get_db
+    yield session
+          └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x000002B477A9CA50>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000002B47AE98C10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000002B479BC34C0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000002B47AEF71A0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x000002B47AF5EFD0>
+                     └ <function get_request_handler.<locals>.app at 0x000002B47AEF7240>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000002B479BC1940>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>, 'query': AdListQuery(page=1, per_page=10, categori...
+                 │         └ <function list_ads at 0x000002B47AE637E0>
+                 └ <fastapi.dependencies.models.Dependant object at 0x000002B47AF09A10>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\routes.py", line 25, in list_ads
+    return await services.list_ads(query, db)
+                 │        │        │      └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+                 │        │        └ AdListQuery(page=1, per_page=10, categories=[0], ad_type=0, sort='string', creation_time_interval=CreationTimeInterval(older_...
+                 │        └ <function list_ads at 0x000002B47ACECC20>
+                 └ <module 'ad.services' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\ad\\services.py'>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\services.py", line 29, in list_ads
+    ads = await queries.list_ads(filter_conditions, start, end, query.sort, db)
+                │       │        │                  │      │    │     │     └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+                │       │        │                  │      │    │     └ 'string'
+                │       │        │                  │      │    └ AdListQuery(page=1, per_page=10, categories=[0], ad_type=0, sort='string', creation_time_interval=CreationTimeInterval(older_...
+                │       │        │                  │      └ 10
+                │       │        │                  └ 0
+                │       │        └ [<sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x000002B47AC945E0>, <sqlalchemy.sql.elements.BinaryExpression ob...
+                │       └ <function list_ads at 0x000002B47AC77240>
+                └ <module 'ad.queries' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\ad\\queries.py'>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\queries.py", line 29, in list_ads
+    result = await db.execute(ads.slice(start, end))
+                   │  │       │   │     │      └ 10
+                   │  │       │   │     └ 0
+                   │  │       │   └ <function GenerativeSelect.slice at 0x000002B47A11E980>
+                   │  │       └ <sqlalchemy.sql.selectable.Select object at 0x000002B47ACE1710>
+                   │  └ <function AsyncSession.execute at 0x000002B47A5F7B00>
+                   └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 439, in execute
+    result = await greenlet_spawn(
+                   └ <function greenlet_spawn at 0x000002B479DB6020>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             │       │      │   └ <built-in function exc_info>
+             │       │      └ <module 'sys' (built-in)>
+             │       └ <method 'throw' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x000002B47ADCEB40 (otid=0x000002B479D1D230) dead>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2246, in execute
+    return self._execute_internal(
+           │    └ <function Session._execute_internal at 0x000002B47A538900>
+           └ <sqlalchemy.orm.session.Session object at 0x000002B47AE8D8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2131, in _execute_internal
+    conn = self._connection_for_bind(bind)
+           │    │                    └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │    └ <function Session._connection_for_bind at 0x000002B47A538680>
+           └ <sqlalchemy.orm.session.Session object at 0x000002B47AE8D8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1998, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           │     │                    │       └ None
+           │     │                    └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │     └ <function SessionTransaction._connection_for_bind at 0x000002B47A537060>
+           └ <sqlalchemy.orm.session.SessionTransaction object at 0x000002B47AF428A0>
+  File "<string>", line 2, in _connection_for_bind
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {}
+                │  │      └ (Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it), None)
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x000002B47AF428A0>
+                └ <function SessionTransaction._connection_for_bind at 0x000002B47A536FC0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1123, in _connection_for_bind
+    conn = bind.connect()
+           │    └ <function Engine.connect at 0x000002B47A1B0D60>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3264, in connect
+    return self._connection_cls(self)
+           │    │               └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │    └ <class 'sqlalchemy.engine.base.Connection'>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+    │                        │      └ <function Engine.raw_connection at 0x000002B47A1B0E00>
+    │                        └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+    └ <sqlalchemy.engine.base.Connection object at 0x000002B47AC8FE10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3288, in raw_connection
+    return self.pool.connect()
+           │    │    └ <function Pool.connect at 0x000002B479E5CA40>
+           │    └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           │                │         └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           │                └ <classmethod(<function _ConnectionFairy._checkout at 0x000002B479E5EAC0>)>
+           └ <class 'sqlalchemy.pool.base._ConnectionFairy'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1267, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            │                 │        └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+            │                 └ <classmethod(<function _ConnectionRecord.checkout at 0x000002B479E5D620>)>
+            └ <class 'sqlalchemy.pool.base._ConnectionRecord'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          │    └ <function QueuePool._do_get at 0x000002B479E66200>
+          └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x000002B47AF51940>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           │    └ <function Pool._create_connection at 0x000002B479E5C7C0>
+           └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           │                 └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           └ <class 'sqlalchemy.pool.base._ConnectionRecord'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+    └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x000002B47AF518C0>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+    │    │                               │    │               └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+    │    │                               │    └ <function create_engine.<locals>.connect at 0x000002B47ACEE840>
+    │    │                               └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+    │    └ <member 'dbapi_connection' of '_ConnectionRecord' objects>
+    └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           │       │        │        └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+           │       │        └ []
+           │       └ <function DefaultDialect.connect at 0x000002B47A223E20>
+           └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002B47ACF2E10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 615, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           │    │            │        │        └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+           │    │            │        └ ()
+           │    │            └ <function AsyncAdapt_asyncpg_dbapi.connect at 0x000002B47AB059E0>
+           │    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002B47AD91E50>
+           └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002B47ACF2E10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 916, in connect
+    await_only(creator_fn(*arg, **kw)),
+    │          │           │      └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+    │          │           └ ()
+    │          └ <function connect at 0x000002B47AE22E80>
+    └ <function await_only at 0x000002B479D318A0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 125, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+           │                     └ <coroutine object connect at 0x000002B47ADBE5A0>
+           └ <_AsyncIoGreenlet object at 0x000002B47ADCEB40 (otid=0x000002B479D1D230) dead>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 185, in greenlet_spawn
+    value = await result
+                  └ <coroutine object connect at 0x000002B47ADBE5A0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connection.py", line 2114, in connect
+    return await connect_utils._connect(
+                 │             └ <function _connect at 0x000002B47AE22A20>
+                 └ <module 'asyncpg.connect_utils' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1011, in _connect
+    raise last_error or exceptions.TargetServerAttributeNotMatched(
+          │             │          └ <class 'asyncpg.exceptions._base.TargetServerAttributeNotMatched'>
+          │             └ <module 'asyncpg.exceptions' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\s...
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 982, in _connect
+    conn = await _connect_addr(
+                 └ <function _connect_addr at 0x000002B47AE22340>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 808, in _connect_addr
+    return await __connect_addr(params, timeout, True, *args)
+                 │              │       │               └ (('localhost', 5432), <_WindowsSelectorEventLoop running=True closed=False debug=False>, ConnectionConfiguration(command_time...
+                 │              │       └ 60
+                 │              └ ConnectionParameters(user='admin', password='<z5&+lLwlgB(]KV#', database='surf_it', ssl=<ssl.SSLContext object at 0x000002B47...
+                 └ <function __connect_addr at 0x000002B47AE223E0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 860, in __connect_addr
+    tr, pr = await compat.wait_for(connector, timeout=timeout)
+                   │      │        │                  └ 60
+                   │      │        └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+                   │      └ <function wait_for at 0x000002B47ADC0540>
+                   └ <module 'asyncpg.compat' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site-...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\compat.py", line 60, in wait_for
+    return await asyncio.wait_for(fut, timeout)
+                 │       │        │    └ 60
+                 │       │        └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+                 │       └ <function wait_for at 0x000002B4771C4180>
+                 └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py", line 479, in wait_for
+    return fut.result()
+           │   └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 719, in _create_ssl_connection
+    tr, pr = await loop.create_connection(
+                   │    └ <function BaseEventLoop.create_connection at 0x000002B4771CE480>
+                   └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1081, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 5432)
+ERROR    2023-07-26 04:00:50.801 request id: app - logging:callHandlers - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 120, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 312
+               │     └ 3
+               └ <function _main at 0x000002B47581B4C0>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 133, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 312
+           │    └ <function BaseProcess._bootstrap at 0x000002B475751080>
+           └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x000002B4757505E0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x000002B4757E1E10>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+    │    └ <function subprocess_started at 0x000002B477838540>
+    └ <SpawnProcess name='SpawnProcess-1' parent=18404 started>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=604, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x000002B477983050>>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=604, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │       │   │    └ <function Server.serve at 0x000002B47781B740>
+           │       │   └ <uvicorn.server.Server object at 0x000002B477983050>
+           │       └ <function run at 0x000002B4771CF6A0>
+           └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000002B4779908C0>
+           │      └ <function Runner.run at 0x000002B4771CFB00>
+           └ <asyncio.runners.Runner object at 0x000002B477964B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000002B4771CD580>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000002B477964B90>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 637, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000002B4771CD4E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000002B4771CF2E0>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000002B47713F2E0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+> File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 435, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002B47798A610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000002B47ADCFB50>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002B47798A610>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\applications.py", line 289, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B47A...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002B47AE8DB90>
+          └ <fastapi.applications.FastAPI object at 0x000002B47ADCFB50>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000002B47AF26520>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002B47ADCF0D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002B47AE8DB90>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000002B47AE98C10>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002B47ADCF0D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 25, in __call__
+    raise dependency_exception
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\db\connection.py", line 22, in get_db
+    yield session
+          └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x000002B477A9CA50>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000002B47AE98C10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000002B479BC34C0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x000002B47AF26480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000002B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000002B47AEF71A0>
+          └ APIRoute(path='/ad/list', name='list_ads', methods=['POST'])
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x000002B47AF5EFD0>
+                     └ <function get_request_handler.<locals>.app at 0x000002B47AEF7240>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000002B479BC1940>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\fastapi\routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>, 'query': AdListQuery(page=1, per_page=10, categori...
+                 │         └ <function list_ads at 0x000002B47AE637E0>
+                 └ <fastapi.dependencies.models.Dependant object at 0x000002B47AF09A10>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\routes.py", line 25, in list_ads
+    return await services.list_ads(query, db)
+                 │        │        │      └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+                 │        │        └ AdListQuery(page=1, per_page=10, categories=[0], ad_type=0, sort='string', creation_time_interval=CreationTimeInterval(older_...
+                 │        └ <function list_ads at 0x000002B47ACECC20>
+                 └ <module 'ad.services' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\ad\\services.py'>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\services.py", line 29, in list_ads
+    ads = await queries.list_ads(filter_conditions, start, end, query.sort, db)
+                │       │        │                  │      │    │     │     └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+                │       │        │                  │      │    │     └ 'string'
+                │       │        │                  │      │    └ AdListQuery(page=1, per_page=10, categories=[0], ad_type=0, sort='string', creation_time_interval=CreationTimeInterval(older_...
+                │       │        │                  │      └ 10
+                │       │        │                  └ 0
+                │       │        └ [<sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x000002B47AC945E0>, <sqlalchemy.sql.elements.BinaryExpression ob...
+                │       └ <function list_ads at 0x000002B47AC77240>
+                └ <module 'ad.queries' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\ad\\queries.py'>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\ad\queries.py", line 29, in list_ads
+    result = await db.execute(ads.slice(start, end))
+                   │  │       │   │     │      └ 10
+                   │  │       │   │     └ 0
+                   │  │       │   └ <function GenerativeSelect.slice at 0x000002B47A11E980>
+                   │  │       └ <sqlalchemy.sql.selectable.Select object at 0x000002B47ACE1710>
+                   │  └ <function AsyncSession.execute at 0x000002B47A5F7B00>
+                   └ <sqlalchemy.orm.session.AsyncSession object at 0x000002B47AF393D0>
+
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 439, in execute
+    result = await greenlet_spawn(
+                   └ <function greenlet_spawn at 0x000002B479DB6020>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             │       │      │   └ <built-in function exc_info>
+             │       │      └ <module 'sys' (built-in)>
+             │       └ <method 'throw' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x000002B47ADCEB40 (otid=0x000002B479D1D230) dead>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2246, in execute
+    return self._execute_internal(
+           │    └ <function Session._execute_internal at 0x000002B47A538900>
+           └ <sqlalchemy.orm.session.Session object at 0x000002B47AE8D8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2131, in _execute_internal
+    conn = self._connection_for_bind(bind)
+           │    │                    └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │    └ <function Session._connection_for_bind at 0x000002B47A538680>
+           └ <sqlalchemy.orm.session.Session object at 0x000002B47AE8D8D0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1998, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           │     │                    │       └ None
+           │     │                    └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │     └ <function SessionTransaction._connection_for_bind at 0x000002B47A537060>
+           └ <sqlalchemy.orm.session.SessionTransaction object at 0x000002B47AF428A0>
+  File "<string>", line 2, in _connection_for_bind
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {}
+                │  │      └ (Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it), None)
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x000002B47AF428A0>
+                └ <function SessionTransaction._connection_for_bind at 0x000002B47A536FC0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1123, in _connection_for_bind
+    conn = bind.connect()
+           │    └ <function Engine.connect at 0x000002B47A1B0D60>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3264, in connect
+    return self._connection_cls(self)
+           │    │               └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+           │    └ <class 'sqlalchemy.engine.base.Connection'>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+    │                        │      └ <function Engine.raw_connection at 0x000002B47A1B0E00>
+    │                        └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+    └ <sqlalchemy.engine.base.Connection object at 0x000002B47AC8FE10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3288, in raw_connection
+    return self.pool.connect()
+           │    │    └ <function Pool.connect at 0x000002B479E5CA40>
+           │    └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           └ Engine(postgresql+asyncpg://admin:***@localhost:5432/surf_it)
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           │                │         └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           │                └ <classmethod(<function _ConnectionFairy._checkout at 0x000002B479E5EAC0>)>
+           └ <class 'sqlalchemy.pool.base._ConnectionFairy'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1267, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            │                 │        └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+            │                 └ <classmethod(<function _ConnectionRecord.checkout at 0x000002B479E5D620>)>
+            └ <class 'sqlalchemy.pool.base._ConnectionRecord'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          │    └ <function QueuePool._do_get at 0x000002B479E66200>
+          └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x000002B47AF51940>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           │    └ <function Pool._create_connection at 0x000002B479E5C7C0>
+           └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           │                 └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+           └ <class 'sqlalchemy.pool.base._ConnectionRecord'>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+    └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x000002B47AF518C0>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+    │    │                               │    │               └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+    │    │                               │    └ <function create_engine.<locals>.connect at 0x000002B47ACEE840>
+    │    │                               └ <sqlalchemy.pool.impl.AsyncAdaptedQueuePool object at 0x000002B47AE04650>
+    │    └ <member 'dbapi_connection' of '_ConnectionRecord' objects>
+    └ <sqlalchemy.pool.base._ConnectionRecord object at 0x000002B47AE0FE70>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           │       │        │        └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+           │       │        └ []
+           │       └ <function DefaultDialect.connect at 0x000002B47A223E20>
+           └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002B47ACF2E10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 615, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           │    │            │        │        └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+           │    │            │        └ ()
+           │    │            └ <function AsyncAdapt_asyncpg_dbapi.connect at 0x000002B47AB059E0>
+           │    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002B47AD91E50>
+           └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002B47ACF2E10>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 916, in connect
+    await_only(creator_fn(*arg, **kw)),
+    │          │           │      └ {'host': 'localhost', 'database': 'surf_it', 'user': 'admin', 'password': '<z5&+lLwlgB(]KV#', 'port': 5432}
+    │          │           └ ()
+    │          └ <function connect at 0x000002B47AE22E80>
+    └ <function await_only at 0x000002B479D318A0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 125, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+           │                     └ <coroutine object connect at 0x000002B47ADBE5A0>
+           └ <_AsyncIoGreenlet object at 0x000002B47ADCEB40 (otid=0x000002B479D1D230) dead>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 185, in greenlet_spawn
+    value = await result
+                  └ <coroutine object connect at 0x000002B47ADBE5A0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connection.py", line 2114, in connect
+    return await connect_utils._connect(
+                 │             └ <function _connect at 0x000002B47AE22A20>
+                 └ <module 'asyncpg.connect_utils' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1011, in _connect
+    raise last_error or exceptions.TargetServerAttributeNotMatched(
+          │             │          └ <class 'asyncpg.exceptions._base.TargetServerAttributeNotMatched'>
+          │             └ <module 'asyncpg.exceptions' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\s...
+          └ OSError("Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127....
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 982, in _connect
+    conn = await _connect_addr(
+                 └ <function _connect_addr at 0x000002B47AE22340>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 808, in _connect_addr
+    return await __connect_addr(params, timeout, True, *args)
+                 │              │       │               └ (('localhost', 5432), <_WindowsSelectorEventLoop running=True closed=False debug=False>, ConnectionConfiguration(command_time...
+                 │              │       └ 60
+                 │              └ ConnectionParameters(user='admin', password='<z5&+lLwlgB(]KV#', database='surf_it', ssl=<ssl.SSLContext object at 0x000002B47...
+                 └ <function __connect_addr at 0x000002B47AE223E0>
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 860, in __connect_addr
+    tr, pr = await compat.wait_for(connector, timeout=timeout)
+                   │      │        │                  └ 60
+                   │      │        └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+                   │      └ <function wait_for at 0x000002B47ADC0540>
+                   └ <module 'asyncpg.compat' from 'D:\\Programming_projects\\Python\\Тестовые задания\\2023\\Surf IT\\test_task\\venv\\Lib\\site-...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\compat.py", line 60, in wait_for
+    return await asyncio.wait_for(fut, timeout)
+                 │       │        │    └ 60
+                 │       │        └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+                 │       └ <function wait_for at 0x000002B4771C4180>
+                 └ <module 'asyncio' from 'C:\\Users\\say1\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py", line 479, in wait_for
+    return fut.result()
+           │   └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-5' coro=<_create_ssl_connection() done, defined at D:\Programming_projects\Python\Тестовые задания\...
+  File "D:\Programming_projects\Python\Тестовые задания\2023\Surf IT\test_task\venv\Lib\site-packages\asyncpg\connect_utils.py", line 719, in _create_ssl_connection
+    tr, pr = await loop.create_connection(
+                   │    └ <function BaseEventLoop.create_connection at 0x000002B4771CE480>
+                   └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\say1\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1081, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 5432)

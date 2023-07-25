@@ -4,6 +4,8 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
+from log.logger import get_logger
+
 config = ConfigParser()
 config.read('./db/db_config.ini')
 database_url = config.get('auth', 'database_url')
@@ -16,5 +18,9 @@ async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async with async_session() as session:
-        yield session
-        await session.commit()
+        try:
+            yield session
+            await session.commit()
+        except Exception as e:
+            logger = get_logger()
+            logger.critical(f'DataBase Error: {e}')

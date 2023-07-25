@@ -1,11 +1,10 @@
 from fastapi import FastAPI, Request
 from fastapi.routing import APIRoute
-from fastapi.responses import JSONResponse
-from fastapi_users import FastAPIUsers
 
 from ad.routes import ad_router
 from auth.auth import auth_backend, fastapi_users
 from auth.schema import UserRead, UserCreate
+from log.logger import get_logger
 
 
 def custom_generate_unique_id(route: APIRoute):
@@ -15,6 +14,8 @@ def custom_generate_unique_id(route: APIRoute):
 app = FastAPI(
     generate_unique_id_function=custom_generate_unique_id,
     title="surf_it_test_task")
+
+app.logger = get_logger()
 
 app.include_router(ad_router)
 app.include_router(
@@ -27,7 +28,6 @@ app.include_router(
     prefix="/auth",
     tags=["auth"],
 )
-
 # @app.exception_handler(ValueError)
 # async def value_error_exception_handler(request: Request, exc: ValueError):
 #     return JSONResponse(

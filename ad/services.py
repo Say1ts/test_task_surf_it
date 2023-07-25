@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ad import queries
@@ -18,7 +20,10 @@ async def create_ad(ad: AdBase, db: AsyncSession, user: User):
     check_user_for_ban(user)
     ad.owner = user.id
     ad.created_at = datetime.now()
-    return await queries.create_ad(ad, db)
+    try:
+        return await queries.create_ad(ad, db)
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred while creating the ad: {str(e)}")
 
 
 async def list_ads(query: AdListQuery, db: AsyncSession):
@@ -31,7 +36,10 @@ async def list_ads(query: AdListQuery, db: AsyncSession):
 
 
 async def get_ad(ad_id: int, db: AsyncSession):
-    return await queries.get_ad(ad_id, db)
+    ad = await queries.get_ad(ad_id, db)
+    if not ad:
+        raise HTTPException(status_code=404, detail="Ad not found")
+    return ad
 
 
 async def delete_ad(ad_id: int, db: AsyncSession, user: User):
@@ -64,6 +72,9 @@ async def create_complain(complain: ComplainBase, db: AsyncSession, user: User):
 
 
 async def list_complains(ad_id: int, db: AsyncSession):
+    ad = await queries.get_ad(ad_id, db)
+    if not ad:
+        raise HTTPException(status_code=404, detail="Ad not found")
     return await queries.list_complains(ad_id, db)
 
 
@@ -75,6 +86,9 @@ async def create_review(review: ReviewBase, db: AsyncSession, user: User):
 
 
 async def list_reviews(ad_id: int, db: AsyncSession):
+    ad = await queries.get_ad(ad_id, db)
+    if not ad:
+        raise HTTPException(status_code=404, detail="Ad not found")
     return await queries.list_reviews(ad_id, db)
 
 

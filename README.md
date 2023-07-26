@@ -14,7 +14,7 @@
 
 
 ## Технологический стэк: 
-`Python, FastAPI, PostgreSQL, SQLAlchemy(async), alembic, fastapi-users, loguru, aiogram`
+`Python 3.11, FastAPI, PostgreSQL 15.3, SQLAlchemy(async), alembic, fastapi-users, loguru, aiogram`
 
 
 ## Перечень выполненных заданий:
@@ -59,6 +59,11 @@ docker-compose up
 2. Готово! Вы восхитительны!серверах.
 
 # Подробнее о проекте
+
+Для получения доступа к API через встроенную автодокументацию можно перейти по адресу `0.0.0.0:8042/docs`
+
+- логин администратора: admin
+- пароль администратора: admin
 
 ## База данных
 Для взаимодействия с базой данных использована библиотека **SQLAlchemy** и асинхронный движок **asyncpg**.

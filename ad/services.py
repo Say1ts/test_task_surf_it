@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -7,7 +8,7 @@ from ad import queries
 from ad.schema import AdListQuery
 from ad.filter_sort import handle_ads_filter
 from db.models import User, Review
-from db.schema import AdBase, ComplainBase, ReviewBase
+from db.schema import AdBase, ComplainBase, ReviewBase, AdEdit
 from fastapi import HTTPException
 
 
@@ -47,18 +48,18 @@ async def delete_ad(ad_id: int, db: AsyncSession, user: User):
     if not ad:
         raise HTTPException(status_code=404, detail="Ad not found")
 
-    if user.id == ad.owner or await queries.is_user_has_permission(user, "delete_ads", db):
+    if user.id == ad.owner or await queries.has_user_permission(user, "delete_ads", db):
         return await queries.delete_ad(ad_id, db)
     raise HTTPException(status_code=403, detail="Not enough permissions")
 
 
-async def edit_ad(ad_id: int, user: User, ad_data: AdBase, db: AsyncSession):
+async def edit_ad(ad_id: int, user: User, ad_data: AdEdit, db: AsyncSession):
     check_user_for_ban(user)
     ad = await queries.get_ad(ad_id, db)
     if not ad:
         raise HTTPException(status_code=404, detail="Ad not found")
 
-    if user.id == ad.owner or await queries.is_user_has_permission(user, "edit_ads", db):
+    if user.id == ad.owner or await queries.has_user_permission(user, "edit_ads", db):
         return await queries.edit_ad(ad_id, ad_data, db)
 
     raise HTTPException(status_code=403, detail="Not enough permissions")
@@ -68,7 +69,10 @@ async def create_complain(complain: ComplainBase, db: AsyncSession, user: User):
     check_user_for_ban(user)
     complain.created_at = datetime.now()
     complain.created_by = user.id
-    return await queries.create_complain(complain, db)
+    try:
+        return await queries.create_complain(complain, db)
+    except sqlalchemy.exc.IntegrityError:
+        raise HTTPException(status_code=404, detail="Ad not found")
 
 
 async def list_complains(ad_id: int, db: AsyncSession):
@@ -98,7 +102,7 @@ async def delete_review(review_id: int, db: AsyncSession, user: User):
     if not review:
         raise HTTPException(status_code=404, detail="Review not found")
 
-    if user.id == review.created_by or await queries.is_user_has_permission(user, "delete_review", db):
+    if user.id == review.created_by or await queries.has_user_permission(user, "delete_review", db):
         return await queries.delete_review(review_id, db)
 
     raise HTTPException(status_code=403, detail="Not enough permissions")

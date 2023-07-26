@@ -4,7 +4,7 @@ from sqlalchemy import and_, Column, select, delete, update
 
 from ad.filter_sort import handle_ads_sort
 from db.models import Ad, User, Review, Complain, Permission, Role
-from db.schema import AdBase, ReviewBase, ComplainBase
+from db.schema import AdBase, ReviewBase, ComplainBase, AdEdit
 
 
 async def create_ad(body: AdBase, db: AsyncSession) -> Ad:
@@ -44,7 +44,7 @@ async def delete_ad(ad_id: int, db: AsyncSession) -> dict[str, str]:
     return {"message": "Ad deleted successfully"}
 
 
-async def edit_ad(ad_id: int, ad_data: AdBase, db: AsyncSession) -> Ad:
+async def edit_ad(ad_id: int, ad_data: AdEdit, db: AsyncSession) -> Ad:
     stmt = update(Ad).where(Ad.id == ad_id).values(**ad_data.dict())
     await db.execute(stmt)
     return await get_ad(ad_id, db)
@@ -101,8 +101,8 @@ async def delete_review(review_id: int, db: AsyncSession) -> dict:
     return {"message": "Review deleted"}
 
 
-async def is_user_has_permission(user_id: int, permission_name: str, db: AsyncSession) -> bool:
-    stmt = select(User).where(User.id == user_id)
+async def has_user_permission(user: User, permission_name: str, db: AsyncSession) -> bool:
+    stmt = select(User).where(User.id == user.id)
     result = await db.execute(stmt)
     user = result.scalar_one_or_none()
 

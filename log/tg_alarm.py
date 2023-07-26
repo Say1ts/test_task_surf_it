@@ -17,4 +17,4 @@ async def send_telegram_message(message: str):
 
 def alert_critical_error(message):
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(send_telegram_message(message))
+    loop.create_task(send_telegram_message(message))

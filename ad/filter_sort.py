@@ -20,9 +20,11 @@ def handle_ads_filter(query: AdListQuery) -> list[Column]:
     # Filter time intervals of creating ads
     if query.creation_time_interval:
         if query.creation_time_interval.newer_then:
-            filter_conditions.append(Ad.created_at >= query.creation_time_interval.newer_then)
+            naive_datetime = query.creation_time_interval.newer_then.replace(tzinfo=None)
+            filter_conditions.append(Ad.created_at >= naive_datetime)
         if query.creation_time_interval.older_then:
-            filter_conditions.append(Ad.created_at <= query.creation_time_interval.older_then)
+            naive_datetime = query.creation_time_interval.older_then.replace(tzinfo=None)
+            filter_conditions.append(Ad.created_at <= naive_datetime)
 
     # Filter price intervals of creating ads
     if query.price_interval:

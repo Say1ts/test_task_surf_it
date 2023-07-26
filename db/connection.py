@@ -1,6 +1,10 @@
 from configparser import ConfigParser
 from typing import AsyncGenerator
 
+import asyncpg
+import sqlalchemy
+from asyncpg import InterfaceError
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 

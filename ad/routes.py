@@ -8,7 +8,7 @@ from ad.schema import AdListQuery
 from auth.auth import fastapi_users
 from db.connection import get_db
 from db.models import User
-from db.schema import AdBase, ReviewBase, ComplainBase
+from db.schema import AdBase, ReviewBase, ComplainBase, AdEdit
 
 ad_router = APIRouter(prefix="/ad")
 current_user = fastapi_users.current_user()
@@ -31,7 +31,7 @@ async def get_ad(ad_id: int, db: AsyncSession = Depends(get_db)):
 
 
 @ad_router.post("/ad_id}/edit", tags=["ad"])
-async def edit_ad(ad_id: int, ad_data: AdBase, db: AsyncSession = Depends(get_db), user: User = Depends(current_user)):
+async def edit_ad(ad_id: int, ad_data: AdEdit, db: AsyncSession = Depends(get_db), user: User = Depends(current_user)):
     return await services.edit_ad(ad_id, user, ad_data, db)
 
 

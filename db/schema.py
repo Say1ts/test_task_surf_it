@@ -37,18 +37,19 @@ class AdBase(BaseModel):
     category_id: Optional[int] = None
     content: str
     is_published: bool = True
-    owner: int
+    owner: Optional[int]
     price: Optional[float]
     created_at: datetime.datetime = None
 
 
-class Ad(AdBase):
-    id: int
-    ad_type: AdType
-    category: Category
-
-    class Config:
-        orm_mode = True
+class AdEdit(BaseModel):
+    type_id: Optional[int]
+    title: Optional[str]
+    category_id: Optional[int]
+    content: Optional[str]
+    is_published: Optional[bool]
+    owner: Optional[int]
+    price: Optional[float]
 
 
 class ComplainBase(BaseModel):
@@ -68,7 +69,7 @@ class Complain(ComplainBase):
 
 class ReviewBase(BaseModel):
     ad_id: int
-    score: int = Field(ge=1, le=10)
+    score: int = Field(ge=0, le=10, default=5)
     content: str
     created_by: int
     created_at: datetime.datetime = None
